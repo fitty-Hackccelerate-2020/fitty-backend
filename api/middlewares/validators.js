@@ -16,7 +16,9 @@ const authBodyValidator = (method) => (req, res, next) => {
   }
 
   if (blacklist) {
-    responses.errorResponse(responseErrors.INVALID_REQUEST_BODY);
+    res
+      .status(400)
+      .json(responses.errorResponse(responseErrors.INVALID_REQUEST_BODY));
     return;
   }
   next();
