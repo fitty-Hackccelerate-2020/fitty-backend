@@ -14,4 +14,8 @@ app.use(morgan('dev'));
 
 app.use('/auth', authAPI);
 
+app.use((req, res) => {
+  res.status(404).end();
+});
+
 module.exports = app;

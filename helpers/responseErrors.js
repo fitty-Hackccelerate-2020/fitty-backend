@@ -4,4 +4,5 @@ module.exports = {
   INTERNAL_ERROR_OCCURED: 'Ops! Internal error occured.',
   USER_NOT_EXISTS: 'User does not exists.',
   INVALID_CREDENTIALS: 'Invalid credentials.',
+  UNAUTHENTICATED: 'Unauthenticated request.',
 };
