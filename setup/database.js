@@ -10,4 +10,4 @@ mongoose
   .then(() => logger.info('MongoDB connected!'))
   .catch((e) => logger.error(e));
 
-module.exports = mongoose;
+module.exports = mongoose.connection;
