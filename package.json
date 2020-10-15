@@ -1,0 +1,21 @@
+{
+  "name": "fitty",
+  "version": "1.0.0",
+  "description": "Health & fitness app's API provider",
+  "main": "index.js",
+  "author": "mayursiinh",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index",
+    "lint": "eslint ./ && prettier --check ./**/*.js"
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "nodemon": "^2.0.5",
+    "prettier": "^2.1.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "winston": "^3.3.3"
+  }
+}
