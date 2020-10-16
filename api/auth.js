@@ -3,10 +3,12 @@ const express = require('express');
 const router = express.Router();
 
 const logger = require('../setup/logger');
-const responses = require('../helpers/responseWrapper');
-const responseErrors = require('../helpers/responseErrors');
-const passwordEncrypter = require('../helpers/passwordEncrypt');
-const generateToken = require('../helpers/jwt/generate');
+const {
+  responseErrors,
+  passwordEncrypter,
+  jwtUtils,
+  responseWrapper,
+} = require('../helpers');
 
 const validators = require('./middlewares/validators');
 
@@ -31,20 +33,22 @@ router.post(
       if (emailExists) {
         res
           .status(400)
-          .json(responses.errorResponse(responseErrors.USER_EXISTS));
+          .json(responseWrapper.errorResponse(responseErrors.USER_EXISTS));
         return;
       } else {
         const hashedPassword = await passwordEncrypter.hashPassword(password);
         await Users.create({ email, password: hashedPassword, full_name });
 
-        const token = generateToken(email);
-        res.status(200).json(responses.successResponse(token));
+        const token = jwtUtils.generateToken(email);
+        res.status(200).json(responseWrapper.successResponse(token));
       }
     } catch (e) {
       logger.error(e);
       res
         .status(400)
-        .json(responses.errorResponse(responseErrors.INTERNAL_ERROR_OCCURED));
+        .json(
+          responseWrapper.errorResponse(responseErrors.INTERNAL_ERROR_OCCURED)
+        );
     }
   }
 );
@@ -59,7 +63,7 @@ router.post(
       if (!emailExists) {
         res
           .status(404)
-          .json(responses.errorResponse(responseErrors.USER_NOT_EXISTS));
+          .json(responseWrapper.errorResponse(responseErrors.USER_NOT_EXISTS));
         return;
       }
 
@@ -73,17 +77,21 @@ router.post(
       if (!isValidPassword) {
         res
           .status(404)
-          .json(responses.errorResponse(responseErrors.INVALID_CREDENTIALS));
+          .json(
+            responseWrapper.errorResponse(responseErrors.INVALID_CREDENTIALS)
+          );
         return;
       }
 
-      const token = generateToken(email);
-      res.status(200).json(responses.successResponse(token));
+      const token = jwtUtils.generateToken(email);
+      res.status(200).json(responseWrapper.successResponse(token));
     } catch (e) {
       logger.error(e);
       res
         .status(400)
-        .json(responses.errorResponse(responseErrors.INTERNAL_ERROR_OCCURED));
+        .json(
+          responseWrapper.errorResponse(responseErrors.INTERNAL_ERROR_OCCURED)
+        );
     }
   }
 );
