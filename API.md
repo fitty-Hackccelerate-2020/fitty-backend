@@ -27,7 +27,7 @@
 ```json
 {
   "error": true,
-  "internalError": false / true,
+  "internalError": "boolean",
   "data": "Reason"
 }
 ```
