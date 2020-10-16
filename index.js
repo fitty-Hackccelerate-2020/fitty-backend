@@ -7,6 +7,7 @@
 
 const app = require('./setup/main');
 const logger = require('./setup/logger');
+require('./cron');
 
 const PORT = process.env.PORT || 3000;
 
