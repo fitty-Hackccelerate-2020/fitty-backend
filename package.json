@@ -6,7 +6,8 @@
   "author": "mayursiinh",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index",
+    "start": "node index",
+    "dev": "nodemon index",
     "lint": "eslint ./ && prettier --check ./**/*.js"
   },
   "devDependencies": {
