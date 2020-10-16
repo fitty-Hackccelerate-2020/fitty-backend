@@ -32,7 +32,7 @@ router.post('/update', isAuthenticated, async (req, res) => {
   }
 
   try {
-    await Users.update(modal).where({ email });
+    await Users.updateOne(modal).where({ email });
     res
       .status(200)
       .json(
