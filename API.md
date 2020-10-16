@@ -62,7 +62,7 @@
 ```json
 {
   "error": true,
-  "internalError": false / true,
+  "internalError": "boolean",
   "data": "Reason"
 }
 ```
@@ -78,12 +78,14 @@
 ```json
 {
   "full_name": "string(optional)",
-  "weight": 50, // in kg - optional
-  "height": 127, // in cm - optional
-  "age": 22, // optional
-  "gender": "M" // must be 'M' or 'F' - optional
+  "weight": 50,
+  "height": 127,
+  "age": 22,
+  "gender": "M(must be 'M' or 'F')"
 }
 ```
+
+> Note: all parameters are optional, provide only which you want to update
 
 **success response**
 
@@ -99,7 +101,7 @@
 ```json
 {
   "error": true,
-  "internalError": false / true,
+  "internalError": "boolean",
   "data": "Reason"
 }
 ```
