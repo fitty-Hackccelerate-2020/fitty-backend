@@ -5,7 +5,6 @@ const router = express.Router();
 const logger = require('../setup/logger');
 const responses = require('../helpers/responseWrapper');
 const responseErrors = require('../helpers/responseErrors');
-const responseSuccess = require('../helpers/responseSuccess');
 const passwordEncrypter = require('../helpers/passwordEncrypt');
 const generateToken = require('../helpers/jwt/generate');
 
@@ -37,9 +36,9 @@ router.post(
       } else {
         const hashedPassword = await passwordEncrypter.hashPassword(password);
         await Users.create({ email, password: hashedPassword, full_name });
-        res
-          .status(200)
-          .json(responses.successResponse(responseSuccess.USER_REGISTERED));
+
+        const token = generateToken(email);
+        res.status(200).json(responses.successResponse(token));
       }
     } catch (e) {
       logger.error(e);
