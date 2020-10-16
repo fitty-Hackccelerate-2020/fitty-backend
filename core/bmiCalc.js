@@ -1,18 +1,34 @@
+const IDEAL_BMR_LOWER_BOUND = 18.5;
+const IDEAL_BMR_UPPER_BOUND = 24.9;
+
 /**
- * https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation
+ *
  * @param {{
- *  weight: Number,
- *  height: Number,
- *  age: Number,
- *  gender: 'M' | 'F'
- * }} param0
+ *  weight: number,
+ *  height: number,
+ * }} p
+ * @returns {number}
  */
-const calculateBMI = ({ weight, height, age, gender }) => {
-  if (gender === 'M') {
-    return 66 + 6.2 * weight + 12.7 * height - 6.76 * age;
-  } else {
-    return 655.1 + 4.35 * weight + 4.7 * height - 4.7 * age;
-  }
+const bmiCalc = ({ weight, height }) => {
+  return weight / (height * height);
 };
 
-module.exports = calculateBMI;
+/**
+ *
+ * @param {{
+ *  height: number,
+ * }} param0
+ * @returns {Array<number, number>} [min-weight, max-weight] range
+ */
+const weightRange = ({ height }) => {
+  const heightSquare = height * height;
+  return [
+    Math.round(IDEAL_BMR_LOWER_BOUND * heightSquare),
+    Math.round(IDEAL_BMR_UPPER_BOUND * heightSquare),
+  ];
+};
+
+module.exports = {
+  bmiCalc,
+  weightRange,
+};

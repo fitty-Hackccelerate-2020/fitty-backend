@@ -79,7 +79,7 @@
 {
   "full_name": "string(optional)",
   "weight": 50,
-  "height": 127,
+  "height": 1.5,
   "age": 22,
   "gender": "M(must be 'M' or 'F')"
 }
@@ -89,10 +89,24 @@
 
 **success response**
 
+If all parameters(mentioned above) are passed
+
 ```json
 {
   "error": false,
-  "data": "string"
+  "data": {
+    "bmi": "number",
+    "weightRange": ["number", "number"]
+  }
+}
+```
+
+If any one parameter is optional (except full_name)
+
+```json
+{
+  "error": false,
+  "data": "Success"
 }
 ```
 

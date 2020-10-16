@@ -35,13 +35,25 @@ router.post('/update', isAuthenticated, async (req, res) => {
   }
 
   let bmi = null;
+  let upperBoundWeight, lowerBoundWeight;
   if (height && weight && age && gender) {
-    bmi = core.calculateBmi(modal);
-    modal.bmi = bmi;
+    bmi = core.bmiUtils.bmiCalc(modal);
+    modal.bmr = bmi;
+
+    [lowerBoundWeight, upperBoundWeight] = core.bmiUtils.weightRange(modal);
   }
 
   try {
     await Users.updateOne(modal).where({ email });
+    if (bmi) {
+      res.status(200).json(
+        helpers.responseWrapper.successResponse({
+          bmi,
+          weightRange: [lowerBoundWeight, upperBoundWeight],
+        })
+      );
+      return;
+    }
     res
       .status(200)
       .json(
