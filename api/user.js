@@ -10,7 +10,7 @@ const core = require('../core');
 const router = express.Router();
 
 // to update basic user data
-router.post('/update', isAuthenticated, async (req, res) => {
+router.post('/update', isAuthenticated, async (req, res, next) => {
   const { email } = req.locals;
   const modal = {};
   if (req.body.full_name) {
@@ -62,13 +62,7 @@ router.post('/update', isAuthenticated, async (req, res) => {
         )
       );
   } catch (e) {
-    res
-      .status(500)
-      .json(
-        helpers.responseWrapper.errorResponse(
-          helpers.responseErrors.INTERNAL_ERROR_OCCURED
-        )
-      );
+    next(e);
   }
 });
 

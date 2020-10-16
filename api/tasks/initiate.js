@@ -1,4 +1,3 @@
-const logger = require('../../setup/logger');
 const helpers = require('../../helpers');
 
 const core = require('../../core');
@@ -7,7 +6,7 @@ const Users = require('../../models/Users');
 const Tasks = require('../../models/Tasks');
 const DailyTask = require('../../models/DailyTask');
 
-const initiate = async (req, res) => {
+const initiate = async (req, res, next) => {
   // get goal weight
   // get per week goal
   const { goalWeight, perWeekWeightGoal } = req.body;
@@ -53,14 +52,7 @@ const initiate = async (req, res) => {
     // keeping in mind, once initiate process is done this response will lead to dashboard
     res.status(200).json(helpers.responseWrapper.successResponse(dailyTask));
   } catch (e) {
-    logger.error(e);
-    res
-      .status(500)
-      .json(
-        helpers.responseWrapper.errorResponse(
-          helpers.responseErrors.INTERNAL_ERROR_OCCURED
-        )
-      );
+    next(e);
   }
 };
 

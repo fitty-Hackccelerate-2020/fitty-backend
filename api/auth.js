@@ -2,7 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-const logger = require('../setup/logger');
 const {
   responseErrors,
   passwordEncrypt,
@@ -25,7 +24,7 @@ const Users = require('../models/Users');
 router.post(
   '/register',
   validators.authBodyValidator('register'),
-  async (req, res) => {
+  async (req, res, next) => {
     const { email, password, full_name } = req.body;
 
     try {
@@ -43,12 +42,7 @@ router.post(
         res.status(200).json(responseWrapper.successResponse(token));
       }
     } catch (e) {
-      logger.error(e);
-      res
-        .status(400)
-        .json(
-          responseWrapper.errorResponse(responseErrors.INTERNAL_ERROR_OCCURED)
-        );
+      next(e);
     }
   }
 );
@@ -56,7 +50,7 @@ router.post(
 router.post(
   '/login',
   validators.authBodyValidator('login'),
-  async (req, res) => {
+  async (req, res, next) => {
     const { email, password } = req.body;
     try {
       const emailExists = await Users.findOne({ email });
@@ -86,12 +80,7 @@ router.post(
       const token = jwtUtils.generate(email);
       res.status(200).json(responseWrapper.successResponse(token));
     } catch (e) {
-      logger.error(e);
-      res
-        .status(400)
-        .json(
-          responseWrapper.errorResponse(responseErrors.INTERNAL_ERROR_OCCURED)
-        );
+      next(e);
     }
   }
 );
