@@ -230,3 +230,58 @@ If any one parameter is optional (except full_name)
   "data": "Reason"
 }
 ```
+
+<hr/>
+
+**endpoint**: `/api/t/update`
+
+**method**: `POST`
+
+**body**:
+
+> Please provide only 1 attribute to update, It will ignore other anyways
+
+```json
+{
+  "token": "must",
+  "taskId": "must",
+
+  "water": "number",
+  "diet": [
+    {
+      "foodName": "string",
+      "quantity": "num",
+      "caloriesGot": "num"
+    }
+  ],
+  "sleep": {
+    "sleptAt": "Date",
+    "wokeupAt": "Date"
+  },
+  "workout": [
+    {
+      "workoutName": "string",
+      "caloriesBurnt": "num"
+    }
+  ]
+}
+```
+
+**success response**
+
+```json
+{
+  "error": false,
+  "data": ""
+}
+```
+
+**error response**
+
+```json
+{
+  "error": true,
+  "internalError": "boolean",
+  "data": "Reason"
+}
+```
