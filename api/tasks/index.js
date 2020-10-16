@@ -6,6 +6,7 @@ const router = express.Router();
 
 const initiate = require('./initiate');
 const getTodaysTask = require('./getTodaysTask');
+const updateTodayTask = require('./updateTask');
 
 router.post(
   '/initiate',
@@ -14,5 +15,6 @@ router.post(
   initiate
 );
 router.post('/today', isAuthenticated, getTodaysTask);
+router.post('/update', isAuthenticated, updateTodayTask);
 
 module.exports = router;

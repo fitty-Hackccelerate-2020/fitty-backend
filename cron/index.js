@@ -22,6 +22,7 @@ cron
           caloriesToConsume: activeTask.dailyCalorieConsumption,
         });
 
+        // TODO: track the goal
         await Tasks.findOneAndUpdate(
           { _id: activeTask._id },
           {
