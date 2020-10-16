@@ -13,6 +13,6 @@ router.post(
   validators.initiateTaskBodyValidator,
   initiate
 );
-router.get('/today', isAuthenticated, getTodaysTask);
+router.post('/today', isAuthenticated, getTodaysTask);
 
 module.exports = router;

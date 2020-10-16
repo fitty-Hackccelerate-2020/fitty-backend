@@ -22,7 +22,7 @@ const initiate = async (req, res) => {
    *  age: number,
    * }} Users model which we extract in isAuthenticated middleware
    */
-  const model = req.locals.data;
+  const model = req.locals.userData;
   const { email } = req.locals;
   const bmr = core.bmrUtils(model);
 

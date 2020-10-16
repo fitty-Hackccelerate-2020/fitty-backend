@@ -181,7 +181,7 @@ If any one parameter is optional (except full_name)
 
 **endpoint**: `/api/t/today`
 
-**method**: `GET`
+**method**: `POST`
 
 **body**:
 
