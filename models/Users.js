@@ -21,6 +21,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ['M', 'F'],
   },
+  bmi: Number,
 });
 
 module.exports = mongoose.model('Users', UserSchema);

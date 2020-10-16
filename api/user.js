@@ -5,6 +5,8 @@ const helpers = require('../helpers');
 
 const isAuthenticated = require('./middlewares/isAuthenticated');
 
+const core = require('../core');
+
 const router = express.Router();
 
 // to update basic user data
@@ -15,20 +17,27 @@ router.post('/update', isAuthenticated, async (req, res) => {
     modal.full_name = req.body.full_name;
   }
 
-  if (req.body.weight) {
-    modal.weight = req.body.weight;
+  const { weight, height, age, gender } = req.body;
+  if (weight) {
+    modal.weight = weight;
   }
 
-  if (req.body.height) {
-    modal.height = req.body.height;
+  if (height) {
+    modal.height = height;
   }
 
-  if (req.body.age) {
-    modal.age = req.body.age;
+  if (age) {
+    modal.age = age;
   }
 
-  if (req.body.gender) {
-    modal.gender = req.body.gender;
+  if (gender) {
+    modal.gender = gender;
+  }
+
+  let bmi = null;
+  if (height && weight && age && gender) {
+    bmi = core.calculateBmi(modal);
+    modal.bmi = bmi;
   }
 
   try {
