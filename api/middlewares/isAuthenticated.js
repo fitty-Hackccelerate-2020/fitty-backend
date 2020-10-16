@@ -42,6 +42,7 @@ const isAuthenticated = async (req, res, next) => {
 
   req.locals = {
     email: payload.email,
+    userData: emailExists,
   };
   next();
 };

@@ -1,4 +1,5 @@
 module.exports = {
-  calculateBmi: require('./bmrCalc'),
+  bmrUtils: require('./bmrCalc'),
   bmiUtils: require('./bmiCalc'),
+  dailyCalorieUtils: require('./dailyCalorie'),
 };

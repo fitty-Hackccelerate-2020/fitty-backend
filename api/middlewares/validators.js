@@ -26,6 +26,24 @@ const authBodyValidator = (method) => (req, res, next) => {
   next();
 };
 
+// validator for /t/initiate
+// it must provide goal to gain or loose kg
+// it must provide goal per week
+const initiateTaskBodyValidator = (req, res, next) => {
+  const { goalWeight, perWeekWeightGoal } = req.body;
+
+  if (!goalWeight || !perWeekWeightGoal) {
+    // TODO: range of values should be valid
+    res
+      .status(400)
+      .send(responses.errorResponse(responseErrors.INVALID_REQUEST_BODY));
+    return;
+  }
+
+  next();
+};
+
 module.exports = {
   authBodyValidator,
+  initiateTaskBodyValidator,
 };
