@@ -20,7 +20,7 @@ const isAuthenticated = async (req, res, next) => {
   const { token } = req.body;
   let payload;
   try {
-    payload = verifyToken(token);
+    payload = verifyToken(token || '');
   } catch (e) {
     if (e instanceof jwt.JsonWebTokenError) {
       res
@@ -40,6 +40,9 @@ const isAuthenticated = async (req, res, next) => {
     return;
   }
 
+  req.locals = {
+    email: payload.email,
+  };
   next();
 };
 

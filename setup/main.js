@@ -15,6 +15,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/auth', apiList.auth);
+app.use('/api/u', apiList.user);
 
 app.use((req, res) => {
   res.status(404).end();

@@ -6,6 +6,7 @@ mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   })
   .then(() => logger.info('MongoDB connected!'))
   .catch((e) => logger.error(e));
