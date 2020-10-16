@@ -5,7 +5,7 @@ const router = express.Router();
 const logger = require('../setup/logger');
 const {
   responseErrors,
-  passwordEncrypter,
+  passwordEncrypt,
   jwtUtils,
   responseWrapper,
 } = require('../helpers');
@@ -36,10 +36,10 @@ router.post(
           .json(responseWrapper.errorResponse(responseErrors.USER_EXISTS));
         return;
       } else {
-        const hashedPassword = await passwordEncrypter.hashPassword(password);
+        const hashedPassword = await passwordEncrypt.hashPassword(password);
         await Users.create({ email, password: hashedPassword, full_name });
 
-        const token = jwtUtils.generateToken(email);
+        const token = jwtUtils.generate(email);
         res.status(200).json(responseWrapper.successResponse(token));
       }
     } catch (e) {
@@ -69,7 +69,7 @@ router.post(
 
       const hashedPasswordInDb = emailExists.password;
 
-      const isValidPassword = await passwordEncrypter.compareHash(
+      const isValidPassword = await passwordEncrypt.compareHash(
         password,
         hashedPasswordInDb
       );
@@ -83,7 +83,7 @@ router.post(
         return;
       }
 
-      const token = jwtUtils.generateToken(email);
+      const token = jwtUtils.generate(email);
       res.status(200).json(responseWrapper.successResponse(token));
     } catch (e) {
       logger.error(e);

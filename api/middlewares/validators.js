@@ -1,6 +1,8 @@
 const responses = require('../../helpers/responseWrapper');
 const responseErrors = require('../../helpers/responseErrors');
 
+// for register it will make sure that request body contains email, password & full_name
+// for login, only email & password required
 const authBodyValidator = (method) => (req, res, next) => {
   const { email, password } = req.body;
   let blacklist = false;

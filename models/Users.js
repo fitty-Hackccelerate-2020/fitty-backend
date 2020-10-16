@@ -4,6 +4,7 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -12,6 +13,13 @@ const UserSchema = new mongoose.Schema({
   full_name: {
     type: String,
     required: true,
+  },
+  weight: Number,
+  height: Number,
+  age: Number,
+  gender: {
+    type: String,
+    enum: ['M', 'F'],
   },
 });
 
