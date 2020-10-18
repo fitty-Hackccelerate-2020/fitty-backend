@@ -66,4 +66,31 @@ router.post('/update', isAuthenticated, async (req, res, next) => {
   }
 });
 
+router.post('/data', isAuthenticated, (req, res, next) => {
+  try {
+    const {
+      full_name,
+      weight,
+      height,
+      age,
+      gender,
+      bmi,
+      bmr,
+    } = req.locals.userData;
+    res.status(200).json(
+      helpers.responseWrapper.successResponse({
+        full_name,
+        weight,
+        height,
+        age,
+        gender,
+        bmi,
+        bmr,
+      })
+    );
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;

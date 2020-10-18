@@ -121,6 +121,47 @@ If any one parameter is optional (except full_name)
 }
 ```
 
+<hr/>
+
+**endpoint**: `/api/u/data`
+
+**method**: `POST`
+
+**body**:
+
+```json
+{
+  "token": ""
+}
+```
+
+**success response**
+
+```json
+{
+  "error": false,
+  "data": {
+    "full_name": "",
+    "age": "",
+    "weight": "",
+    "height": "",
+    "gender": "",
+    "bmi": "",
+    "bmr": ""
+  }
+}
+```
+
+**error response**
+
+```json
+{
+  "error": true,
+  "internalError": "boolean",
+  "data": "Reason"
+}
+```
+
 ## Tasks
 
 **endpoint**: `/api/t/initiate`
