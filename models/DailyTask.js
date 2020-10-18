@@ -26,8 +26,8 @@ const DailyTaskSchema = new mongoose.Schema(
       },
     ],
     sleep: {
-      sleptAt: Date,
-      wokeupAt: Date,
+      sleptAt: Number,
+      wokeupAt: Number,
     },
     workout: [
       {

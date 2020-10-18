@@ -21,8 +21,8 @@ const updateTask = async (req, res, next) => {
      *  },
      *  water: number,
      *  sleep: {
-     *    sleptAt: Date,
-     *    wokeupAt: Date
+     *    sleptAt: number,
+     *    wokeupAt: number
      *  },
      *  totalWaterGoal: number,
      * }}
