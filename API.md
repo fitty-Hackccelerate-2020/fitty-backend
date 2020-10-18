@@ -185,8 +185,10 @@ If any one parameter is optional (except full_name)
 {
   "error": false,
   "data": {
+    "_id": "string(use this as taskId to update this task in future)",
     "caloriesToConsume": "num",
     "drankWater": "num",
+    "totalWaterGoal": "num",
     "caloriesConsumed": "num",
     "diet": [
       {
@@ -239,8 +241,10 @@ If any one parameter is optional (except full_name)
 {
   "error": false,
   "data": {
+    "_id": "string(use this as taskId to update this task in future)",
     "caloriesToConsume": "num",
     "drankWater": "num",
+    "totalWaterGoal": "num",
     "caloriesConsumed": "num",
     "diet": [
       {
@@ -289,6 +293,7 @@ If any one parameter is optional (except full_name)
   "taskId": "must",
 
   "water": "number",
+  "totalWaterGoal": "number",
   "diet": [
     {
       "foodName": "string",

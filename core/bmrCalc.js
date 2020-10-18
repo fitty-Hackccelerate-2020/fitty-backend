@@ -8,7 +8,7 @@
  *  exerciseIndex: number,
  * }} param0
  */
-const calculateBMR = ({ weight, height, age, gender, exerciseIndex }) => {
+const calculateBMR = ({ weight, height, age, gender, exerciseIndex = 1 }) => {
   if (gender === 'M') {
     return (66 + 6.2 * weight + 12.7 * height - 6.76 * age) * exerciseIndex;
   } else {

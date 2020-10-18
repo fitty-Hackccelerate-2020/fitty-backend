@@ -10,6 +10,10 @@ const DailyTaskSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    totalWaterGoal: {
+      type: Number,
+      default: 10,
+    },
     caloriesConsumed: {
       type: Number,
       default: 0,

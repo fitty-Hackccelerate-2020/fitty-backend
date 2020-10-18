@@ -24,9 +24,10 @@ const updateTask = async (req, res, next) => {
      *    sleptAt: Date,
      *    wokeupAt: Date
      *  },
+     *  totalWaterGoal: number,
      * }}
      */
-    const { taskId, diet, workout, water, sleep } = req.body;
+    const { taskId, diet, workout, water, sleep, totalWaterGoal } = req.body;
 
     // TODO: validate
 
@@ -101,6 +102,16 @@ const updateTask = async (req, res, next) => {
         .status(200)
         .json(responseWrapper.successResponse(responseSuccess.UPDATE_SUCCESS));
       return;
+    }
+
+    // WATER GOAL
+    if (totalWaterGoal) {
+      await DailyTask.findOneAndUpdate(
+        { _id: taskId },
+        {
+          totalWaterGoal,
+        }
+      );
     }
 
     res
