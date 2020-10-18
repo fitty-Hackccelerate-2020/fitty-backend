@@ -19,6 +19,7 @@ const initiate = async (req, res, next) => {
    *  weight: number,
    *  height: number,
    *  age: number,
+   *  exerciseIndex: number,
    * }} Users model which we extract in isAuthenticated middleware
    */
   const model = req.locals.userData;

@@ -17,7 +17,7 @@ router.post('/update', isAuthenticated, async (req, res, next) => {
     modal.full_name = req.body.full_name;
   }
 
-  const { weight, height, age, gender } = req.body;
+  const { weight, height, age, gender, exerciseIndex } = req.body;
   if (weight) {
     modal.weight = weight;
   }
@@ -32,6 +32,10 @@ router.post('/update', isAuthenticated, async (req, res, next) => {
 
   if (gender) {
     modal.gender = gender;
+  }
+
+  if (exerciseIndex) {
+    modal.exerciseIndex = exerciseIndex;
   }
 
   let bmi = null;

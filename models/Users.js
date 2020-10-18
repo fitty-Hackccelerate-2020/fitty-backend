@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema(
     },
     bmi: Number,
     bmr: Number,
+    exerciseIndex: Number,
   },
   {
     timestamps: true,

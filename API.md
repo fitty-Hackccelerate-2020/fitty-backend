@@ -82,6 +82,7 @@
   "height": 1.5,
   "age": 22,
   "gender": "M(must be 'M' or 'F')",
+  "exerciseIndex": "number",
   "token": ""
 }
 ```
