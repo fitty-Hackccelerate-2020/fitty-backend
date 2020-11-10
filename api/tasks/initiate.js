@@ -2,7 +2,6 @@ const helpers = require('../../helpers');
 
 const core = require('../../core');
 
-const Users = require('../../models/Users');
 const Tasks = require('../../models/Tasks');
 const DailyTask = require('../../models/DailyTask');
 
@@ -23,12 +22,8 @@ const initiate = async (req, res, next) => {
    * }} Users model which we extract in isAuthenticated middleware
    */
   const model = req.locals.userData;
-  const { email } = req.locals;
-  const bmr = core.bmrUtils(model);
 
   try {
-    await Users.update({ bmr }).where({ email });
-
     const dailyCalorieConsumption = core.dailyCalorieUtils({
       perWeekWeightGoal,
     });

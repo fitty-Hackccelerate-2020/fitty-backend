@@ -11,10 +11,10 @@
 const calculateBMR = ({ weight, height, age, gender, exerciseIndex = 1 }) => {
   if (gender === 'M') {
     return (
-      (66.5 + 13.75 * weight + 5.003 * height - 6.755 * age) * exerciseIndex
+      (66.5 + 13.75 * weight + 500.3 * height - 6.755 * age) * exerciseIndex
     );
   } else {
-    return (655 + 9.563 * weight + 1.85 * height - 4.676 * age) * exerciseIndex;
+    return (655 + 9.563 * weight + 185 * height - 4.676 * age) * exerciseIndex;
   }
 };
 
